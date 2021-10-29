@@ -1,10 +1,59 @@
+"TYPES"
 type Movie {
 	_id: ID
 	title: String
 	genre: String
 }
 
+type Actor {
+	_id: ID
+	first_name: String
+	last_name: String
+	email: String
+	gender: String
+}
+
+"INPUTS"
+input MovieInput {
+	title: String!
+	genre: String!
+}
+
+input MovieEditInput {
+	title: String
+	genre: String
+}
+
+input ActorInput {
+	first_name: String!
+	last_name: String!
+	email: String
+	gender: String!
+}
+
+input ActorEditInput {
+	first_name: String
+	last_name: String
+	email: String
+	gender: String
+}
+
+"QUERY"
 type Query {
 	getMovies: [Movie]
 	getMovie(id: ID!): Movie
+	getActors: [Actor]
+	getActor(id: ID!): Actor
 }
+
+"MUTATION"
+type Mutation {
+	createMovie(input: MovieInput!): Movie
+	editMovie(_id: ID!, input: MovieEditInput!): Movie
+	createActor(input: ActorInput): Actor
+	editActor(_id:ID!, input: ActorEditInput!): Actor
+	deleteActor(_id: ID!): String
+	deleteMovie(_id: ID!): String
+}
+
+
